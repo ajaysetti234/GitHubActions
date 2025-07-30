@@ -1,0 +1,15 @@
+name: CI
+on:  
+  workflow_dispatch:
+    input:
+      name:
+        description: 'person to great'
+        default: 'world'
+        required: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: run aone-line script
+        run: echo "hello ${{github.event.inputs.name}}"
