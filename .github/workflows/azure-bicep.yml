@@ -15,8 +15,14 @@ jobs:
       - name: setup-azd
         uses: Azure/setup-azd@v2.1.0 
       - name: log in with azure
-        run:
-          azd auth login --clientid
+        run: |
+          azd auth login --client-id ${{ secrets.AZURE_CLIENT_ID }} --client-secret ${{ secrets.AZURE_CLIENT_SECRET }} --tenant-id ${{ secrets.AZURE_TENANT_ID }} --tenant-name ${{ secrets.AZURE_TENANT_NAME }}
+        shell: pwsh
+      - name: create resource group
+        run: |
+          azd group create --name ${{ env.Resource_GROUP }} --location eastus
+        shell: pwsh
+          
       
           
   
