@@ -20,7 +20,7 @@ jobs:
         shell: pwsh
       - name: create resource group
         run: |
-          azd group create --name ${{ env.Resource_GROUP }} --location eastus
+          az group create --name ${{ env.Resource_GROUP }} --location eastus
         shell: pwsh
           
       
