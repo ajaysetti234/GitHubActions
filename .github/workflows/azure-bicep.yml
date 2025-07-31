@@ -18,8 +18,13 @@ jobs:
         run: |
           azd auth login --client-id ${{ secrets.AZURE_CLIENT_ID }} --client-secret ${{ secrets.AZURE_CLIENT_SECRET }} --tenant-id ${{ secrets.AZURE_TENANT_ID }}
         shell: pwsh
+      #- name: log in with azure
+      #  run: |
+      #    azd auth login --client-id ${{ secrets.AZURE_CLIENT_ID }} --client-secret ${{ secrets.AZURE_CLIENT_SECRET }} --tenant-id ${{ secrets.AZURE_TENANT_ID }}
+      #  shell: pwsh
       - name: create resource group
         run: |
+          az login --service-principal --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
           az group create --name ${{ env.Resource_GROUP }} --location eastus
         shell: pwsh
           
