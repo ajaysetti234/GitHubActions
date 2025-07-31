@@ -1,0 +1,23 @@
+on:
+  #push:
+  #  branches: [ main ]
+  #pull_request:
+  #  branches: [ main ]
+  workflow_dispatch:
+env:
+  Resource_GROUP: 'testing-bicep'
+  WEBAPP_NAME: bicep-234
+jobs:
+  preview-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup-azd
+        uses: Azure/setup-azd@v2.1.0 
+      - name: log in with azure
+        run:
+          azd auth login --clientid
+      
+          
+  
+  
